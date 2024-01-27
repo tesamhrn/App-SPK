@@ -1,0 +1,73 @@
+/* Your custom styles here */
+
+/* Add gradient background to navbar */
+.navbar {
+    background: linear-gradient(45deg, #3498db, #e74c3c);
+}
+
+/* Add transition effect for smoother color change */
+.navbar {
+    transition: background 0.5s ease;
+}
+
+/* Optional: Customize other styles as needed */
+.navbar-brand {
+    color: #fff;
+    /* Set text color to white */
+}
+
+.navbar-nav .nav-link {
+    color: #fff;
+    /* Set text color to white */
+}
+
+.navbar-nav .nav-link:hover {
+    color: #ffd700;
+    /* Set text color to gold on hover */
+}
+
+.form-control {
+    background-color: rgba(255, 255, 255, 0.2);
+    /* Set search input background color with transparency */
+    color: #fff;
+    /* Set text color to white */
+}
+
+.btn-outline-success {
+    border-color: #fff;
+    /* Set border color for the search button */
+    color: #fff;
+    /* Set text color for the search button */
+}
+
+.btn-outline-success:hover {
+    background-color: #ffd700;
+    /* Set background color to gold on hover */
+    border-color: #ffd700;
+    /* Set border color to gold on hover */
+    color: #fff;
+    /* Set text color to white on hover */
+}
+
+/* Show dropdown on hover */
+.nav-item:hover .dropdown-menu {
+    display: block;
+}
+
+/* Style the dropdown menu */
+.dropdown-menu {
+    background-color: #3498db;
+    /* Set background color for the dropdown menu */
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item {
+    color: #fff;
+    /* Set text color for dropdown items */
+}
+
+.dropdown-item:hover {
+    background-color: #4ea6e2;
+    /* Set background color for dropdown items on hover */
+}

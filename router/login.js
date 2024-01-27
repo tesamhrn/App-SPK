@@ -4,7 +4,7 @@ const router = express.Router();
 const {loginPage} = require('../controllers/loginController');
 
 
-router.get('/login', loginPage)
+router.get('/', loginPage)
 
 // router.post('/postCreate_Account', createAdminAccount)
 

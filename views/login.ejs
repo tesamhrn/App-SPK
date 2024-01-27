@@ -6,33 +6,14 @@
     <title><%= locals.title %></title>
     <meta name="description" content="<%=  locals.description %>">
     <link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/dividershapeCustom.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 <body>
 
-    <style>
 
-        .custom-shape-divider-bottom-1706342370 {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            overflow: hidden;
-            line-height: 0;
-            transform: rotate(180deg);
-        }
-
-        .custom-shape-divider-bottom-1706342370 svg {
-            position: relative;
-            display: block;
-            width: calc(100% + 1.3px);
-            height: 164px;
-        }
-
-        .custom-shape-divider-bottom-1706342370 .shape-fill {
-            fill: #FFFFFF;
-        }
-    </style>
 
     <style>
         .hidden{
@@ -47,11 +28,123 @@
         </div>
     </nav>
 
-    <div  style="background-color: rgb(61, 101, 101); height: 100vh; position: relative;" >
-        <div class="custom-shape-divider-bottom-1706342370">
+    <div  style="background-color: #89CFF3; height: 100vh; position: relative;" >
+        <div class="custom-shape-divider-bottom-1706348237">
             <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+                <path d="M741,116.23C291,117.43,0,27.57,0,6V120H1200V6C1200,27.93,1186.4,119.83,741,116.23Z" class="shape-fill"></path>
             </svg>
+        </div>
+
+        <div class="container" style="padding-top: 60px;">
+            <% message.forEach(element => { %>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                  <%= element %>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <% }) %>
+            <div class="col-lg-12">
+    
+                <p style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">Selamat datang di Sistem Pendukung Keputusan untuk penentuan karyawan terbaik dengan metode AHP dan TOPSIS</p>
+                <div class="col-lg-3 mb-4 pb-2 pt-2">
+                    <h5 class=""></h5>
+                    
+                    <ul class="list-group list-group-horizontal">
+                        <button type="button" id="menu-login" class="list-group-item list-group-item-action active">Log In</button>
+                        <button type="button" id="menu-signup" class="list-group-item list-group-item-action">Sign Up</button>
+                    </ul>
+
+    
+                </div>
+    
+                <section id="login-container">
+                    <div class="fw-light mb-1">Log In</div>
+                    <form action="/postLogin_User" method="POST">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4>Please enter your username & password</h4>
+                                <hr>
+    
+                                <div class="mb-3 row">
+                                    <label for="" class="col-sm-2 col-form-label">Username</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="username" class="form-control" required>
+                                    </div>
+                                </div>
+    
+                                <div class="mb-3 row">
+                                    <label for="" class="col-sm-2 col-form-label">password</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="password" class="form-control" required>
+                                    </div>
+                                </div>
+    
+                                <div class="mb-3 row">
+                                    <label for="" class="col-sm-2 col-form-label"></label>
+                                    <div class="col-sm-10">
+                                        <button type="submit" class="btn btn-primary">Log In</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3 row">
+                                    <label for="" class="col-sm-2 col-form-label"></label>
+                                    <div class="col-sm-10">
+                                        <a href="" class="link-dark">Forgot your password ?</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+    
+                <section id="signup-container" class="hidden">
+                    <div class="fw-light mb-1">Sign Up</div>
+                    <form action="/postCreate_Account" method="POST">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4>Create your Account below</h4>
+                                <hr>
+    
+                                <div class="mb-3 row">
+                                    <label for="" class="col-sm-2 col-form-label">Username</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="username" class="form-control" required>
+                                    </div>
+                                </div>
+    
+                                <div class="mb-3 row">
+                                    <label for="" class="col-sm-2 col-form-label">password</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="password" class="form-control" required>
+                                    </div>
+                                </div>
+    
+                                <div class="mb-3 row">
+                                    <label for="" class="col-sm-2 col-form-label">Email</label>
+                                    <div class="col-sm-10">
+                                        <input type="email" name="email" class="form-control" required>
+                                    </div>
+                                </div>
+    
+                                <div class="mb-3 row">
+                                    <label for="" class="col-sm-2 col-form-label"></label>
+                                    <div class="col-sm-10">
+                                        <button type="submit" class="btn btn-primary">Create Account</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3 row">
+                                    <label for="" class="col-sm-2 col-form-label"></label>
+                                    <div class="col-sm-10">
+                                        <!-- <a href="" class="link-info">Forgot your password ?</a> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+                
+    
+            </div>
         </div>
 
 
@@ -59,115 +152,7 @@
         
     </div>
 
-    <div class="container" style="padding-top: 60px;">
-        <% message.forEach(element => { %>
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-              <%= element %>
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        <% }) %>
-        <div class="col-lg-12">
 
-            <div class="col-lg-3 mb-4 pb-2 pt-2">
-                <h5 class=""></h5>
-                
-                <ul class="list-group list-group-horizontal">
-                    <button type="button" id="menu-login" class="list-group-item list-group-item-action active">Log In</button>
-                    <button type="button" id="menu-signup" class="list-group-item list-group-item-action">Sign Up</button>
-                </ul>
-
-            </div>
-
-            <section id="login-container">
-                <div class="fw-light mb-1">Log In</div>
-                <form action="/postLogin_User" method="POST">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h4>Please enter your username & password</h4>
-                            <hr>
-
-                            <div class="mb-3 row">
-                                <label for="" class="col-sm-2 col-form-label">Username</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="username" class="form-control" required>
-                                </div>
-                            </div>
-
-                            <div class="mb-3 row">
-                                <label for="" class="col-sm-2 col-form-label">password</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="password" class="form-control" required>
-                                </div>
-                            </div>
-
-                            <div class="mb-3 row">
-                                <label for="" class="col-sm-2 col-form-label"></label>
-                                <div class="col-sm-10">
-                                    <button type="submit" class="btn btn-primary">Log In</button>
-                                </div>
-                            </div>
-                            
-                            <div class="mb-3 row">
-                                <label for="" class="col-sm-2 col-form-label"></label>
-                                <div class="col-sm-10">
-                                    <a href="" class="link-info">Forgot your password ?</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </section>
-
-            <section id="signup-container" class="hidden">
-                <div class="fw-light mb-1">Sign Up</div>
-                <form action="/postCreate_Account" method="POST">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h4>Create your Account below</h4>
-                            <hr>
-
-                            <div class="mb-3 row">
-                                <label for="" class="col-sm-2 col-form-label">Username</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="username" class="form-control" required>
-                                </div>
-                            </div>
-
-                            <div class="mb-3 row">
-                                <label for="" class="col-sm-2 col-form-label">password</label>
-                                <div class="col-sm-10">
-                                    <input type="text" name="password" class="form-control" required>
-                                </div>
-                            </div>
-
-                            <div class="mb-3 row">
-                                <label for="" class="col-sm-2 col-form-label">Email</label>
-                                <div class="col-sm-10">
-                                    <input type="email" name="email" class="form-control" required>
-                                </div>
-                            </div>
-
-                            <div class="mb-3 row">
-                                <label for="" class="col-sm-2 col-form-label"></label>
-                                <div class="col-sm-10">
-                                    <button type="submit" class="btn btn-primary">Create Account</button>
-                                </div>
-                            </div>
-                            
-                            <div class="mb-3 row">
-                                <label for="" class="col-sm-2 col-form-label"></label>
-                                <div class="col-sm-10">
-                                    <a href="" class="link-info">Forgot your password ?</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </section>
-            
-
-        </div>
-    </div>
 
     <!-- Vendor JS Files -->
   <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

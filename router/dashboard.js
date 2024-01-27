@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
 
-const {} = require('');
+const { dashboardPage } = require('../controllers/dashboardController');
 
 
 
-router.get('/',dashboardPage)
+router.get('/dashboard',dashboardPage)
 
 
 

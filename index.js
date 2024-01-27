@@ -6,6 +6,8 @@ const session = require('express-session')
 
 const express = require('express');
 const loginRouter = require('./router/login');
+const dashboardRouter = require('./router/dashboard');
+const karyawanRouter = require('./router/karyawan');
 const PORT = process.env.PORT
 
 
@@ -37,13 +39,15 @@ app.use(flash({ sessionKeyName: 'flashMessage' }));
 
 app.set("views",[
     path.join(__dirname, "/views"),
+    path.join(__dirname, "/views/karyawan"),
 
 ])
 
 
 app.set('view engine', 'ejs');
 
-app.use('/', loginRouter);
+app.use('/', loginRouter, dashboardRouter);
+app.use('/data', karyawanRouter);
 
 
 

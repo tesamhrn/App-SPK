@@ -1,11 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= locals.title %></title>
+  <link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+  <link rel="stylesheet" href="/assets/css/navbarGradient.css">
 </head>
 <body>
+
+    <style>
+        .custom-shape-divider-top-1706351543 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+
+        .custom-shape-divider-top-1706351543 svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 177px;
+            transform: rotateY(180deg);
+        }
+
+        .custom-shape-divider-top-1706351543 .shape-fill {
+            fill: #C5D3C5;
+        }
+
+    </style>
+
+    <style>
+        .custom-avatar {
+        width: 20px; /* Adjust the width as needed */
+        height: 20px; /* Adjust the height as needed */
+        background-color: rgb(45, 118, 196);
+        border-radius: 3px; /* Add border-radius for rounded corners if needed */
+      }
+    </style>
+
+    <!-- Header start -->
+    <%-include('partials/header')%>
+    <!-- Header end -->
+
+
+
+<div class="container mt-5 border border-danger">
+
+    <div class="toast fade show ms-auto animate__animated animate__backInRight" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header ">
+            <div class="custom-avatar rounded me-2"></div>
+            <strong class="">Notifikasi</strong>
+            <small class="ms-auto">11 secs ago</small>
+        </div>
+        <div class="toast-body">
+            Selamat anda berhasil login 
+          <div class="mt-2 pt-2 border-top">
+            <!-- <button type="button" class="btn btn-primary btn-sm">Take action</button> -->
+            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Close</button>
+          </div>
+        </div>
+    </div>
+
     
+    <div class="card">
+        <div class="card-body">
+            <h2>Hai user</h2>
+            Selamat datang di Sistem Pendukung Keputusan
+        </div>
+    </div>
+</div>
+
+<!-- Vendor JS Files -->
+<script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

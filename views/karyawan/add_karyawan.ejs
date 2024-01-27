@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= locals.title %></title>
+
+    <link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- custom css navbar -->
+    <link rel="stylesheet" href="/assets/css/navbarGradient.css">
+
+</head>
+<body>
+    <!-- header start -->
+    <%-include('partials/header'); %>
+    <!-- header end -->
+
+    <div class="container mt-4">
+        <form class="" action="/post_book" method="post" enctype="multipart/form-data">
+            <div class="row d-flex">
+                <div class="col">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Nama Lengkap</label>
+                        <input type="text" class="form-control" name="nama_lengkap" id="exampleInputtitle" aria-describedby="emailHelp" required>
+                        <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+                    </div>
+                </div>
+
+                <div class="col">
+
+                    <div class="mb-3">
+
+                        <label for="exampleInputEmail1" class="form-label">Pendidikan Terakhir</label>
+                        <select class="form-select" name="pendidikan_terakhir" id="">
+                            <option value="" selected>-</option>
+                            <option value="">S1</option>
+                            <option value="">S2</option>
+                        </select>
+                    </div>
+
+    
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Tanggal Masuk</label>
+                        <input type="date" class="form-control" name="tanggal_masuk" id="exampleInputPassword1" required>
+                    </div>
+
+                    <!-- <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Publication Year</label>
+                        <input type="email" class="form-control" name="publication_year" id="exampleInputPassword1" required>
+                    </div> -->
+                </div>
+            </div>
+
+            <a href="/data/data-karyawan" class="btn btn-warning">Back</a>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    
+
+    <script src="/assets/js/clock.js"></script>
+</body>
+</html>
