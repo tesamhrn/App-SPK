@@ -1,0 +1,15 @@
+.border-left-primary {
+    border-left: 0.25rem solid #4e73df !important;
+}
+
+.border-left-green {
+    border-left: 0.25rem solid #99BC85 !important;
+}
+
+.border-left-yellow {
+    border-left: 0.25rem solid #EEC759 !important;
+}
+
+.border-left-red {
+    border-left: 0.25rem solid #FD8A8A !important;
+}

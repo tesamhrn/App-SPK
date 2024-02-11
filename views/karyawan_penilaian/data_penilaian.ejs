@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= locals.title %></title>
+
+    <link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- custom css navbar -->
+    <link rel="stylesheet" href="/assets/css/navbarGradient.css">
+
+    <!-- custom css files -->
+    <link href="/assets/css/btnCustom.css" rel="stylesheet">
+
+    
+</head>
+<body>
+
+    <style>
+
+        /* Custom Tooltip Style */
+        .tooltip-inner {
+            background-color: #19314a; /* Ganti warna latar belakang tooltip sesuai keinginan Anda */
+            color: #ffffff; /* Ganti warna teks tooltip sesuai keinginan Anda */
+            border: 1px solid #19314a; /* Ganti warna border tooltip sesuai keinginan Anda */
+        }
+    </style>
+    <!-- header start -->
+    <%-include('partials/header'); %>
+    <!-- header end -->
+    <% let name = "Tesa" %>
+
+    <div class="container mt-5">
+        <a href="/data/tambah-karyawan" class="btn btn-sm btn-warning">Tambah Karyawan</a>
+        <div class="d-flex flex-column animate__animated animate__backInRight">
+
+            <h3 class="ms-auto" id="clock">time</h3>
+
+            <h4 class="text-decoration-underline">Data Penilaian</h3>
+
+            
+
+            <!-- <div class="dropdown-center mt-1 ms-auto">
+               
+                <button class="btn btn-sm btn-primary dropdown-toggle" aria-expanded="false" type="button" data-bs-toggle="dropdown"><i class="fa-solid fa-moon"></i></button>
+                
+
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#"></a></li>
+                    <li><a class="dropdown-item" href="#">Light Mode</a></li> 
+                    <button class="btn btn-primary" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+
+                    <li><a class="dropdown-item" href="#">Dark Mode</a></li>
+                </ul>
+            </div> -->
+
+
+            <table class="table table-sm table-striped">
+                <thead>
+                    <th>No</th>
+                    <th>Nama Lengkap</th>
+                    <th>Tanggal Masuk</th>
+                    <th>Aksi</th>
+                </thead>
+                <tbody>
+                    <td>1</td>
+                    <td>Alex</td>
+                    <td>15/02/2022</td>
+                    <td>
+<!-- 
+                        <a href=""class="btn border-shadow custom-tooltip" data-bs-toggle="tooltip" data-bs-title="Detail Data" data-bs-placement="bottom">
+                            <span class=""><i class="fa-solid fa-grip-vertical"></i></span>
+                        </a> -->
+
+                        <a href="" class="btn btn-sm border-shadow update custom-tooltip" id="set_edit" data-bs-toggle="tooltip" data-bs-title="Penilaian" data-bs-placement="bottom"><i class="fa-solid fa-pen-to-square"></i>
+                        </a>
+                        <!-- <a href="" class="btn btn-sm border-shadow update custom-tooltip" id="set_edit" data-bs-toggle="tooltip" data-bs-title="Kirim Email" data-bs-placement="bottom" target="_blank"><i class="fa-regular fa-envelope"></i></a> -->
+                       
+                        <!-- <a class="btn border-shadow delete" href="" >
+                            <span class="text-gradient"><i class="bi bi-trash2-fill"></i></span>
+                        </a> -->
+                    </td>
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+    
+
+    <script src="/assets/js/clock.js"></script>
+
+    <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script>
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('.custom-tooltip'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        });
+    </script>
+
+    <!-- Vendor JS Files -->
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= locals.title %></title>
+
+    <link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- custom css navbar -->
+    <link rel="stylesheet" href="/assets/css/navbarGradient.css">
+
+    <!-- custom css files -->
+    <link href="/assets/css/btnCustom.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/assets/css/table/searchboxStyle.css">
+
+    
+</head>
+<body>
+
+    <style>
+
+        /* Custom Tooltip Style */
+        .tooltip-inner {
+            background-color: #19314a; /* Ganti warna latar belakang tooltip sesuai keinginan Anda */
+            color: #ffffff; /* Ganti warna teks tooltip sesuai keinginan Anda */
+            border: 1px solid #19314a; /* Ganti warna border tooltip sesuai keinginan Anda */
+        }
+    </style>
+
+    <style>
+        .custom-table td,
+        .custom-table th {
+            font-size: 14px; /* Adjust the font size as needed */
+        }
+    </style>
+    <!-- header start -->
+    <%-include('partials/header'); %>
+    <!-- header end -->
+    <% let name = "Tesa" %>
+
+    <div class="container mt-5">
+
+        <!-- <a href="/data/tambah-kriteria" class="btn btn-sm btn-warning">Tambah Kriteria</a> -->
+        <div class="dropend">
+            <button type="button" class="btn btn-sm btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+              Tambah Kriteria
+            </button>
+            <form class="dropdown-menu p-2 col-lg-7 shadow rounded border-1" style="background-color: #ffffff;">
+                <div class="row">
+                    <div class="mb-3">
+                        <label for="exampleDropdownFormEmail2" class="form-label">Nama Kriteria</label>
+                        <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="Contoh : Jumlah Absensi ">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Tambah</button>
+            </form>
+        </div>
+        
+        <div class="d-flex flex-column animate__animated animate__backInRight">
+
+            <h3 class="ms-auto" id="clock">time</h3>
+        </div>
+        
+        <div class="search-box float-end mb-2">
+            <input type="text" placeholder="Search..." id="search-bar">
+            <button class="btn-srch"><i class="bi bi-search"></i></button>
+        </div>
+        
+        <h4 class="text-decoration-underline"><%= locals.title %></h3>
+
+
+            <table class="table table-sm table-hover custom-table" id="data-table-view">
+                <thead>
+                    <th>No</th>
+                    <th>Kode Kriteria</th>
+                    <th>Nama Kriteria</th>
+                    <th class="text-center">Aksi</th>
+                </thead>
+                <tbody>
+                    <td>1</td>
+                    <td>Alex</td>
+                    <td>15/02/2022</td>
+                    <td class="text-center">
+
+                        <a href="" class="btn btn-sm border-shadow update custom-tooltip" id="set_edit" data-bs-toggle="tooltip" data-bs-title="Edit Data" data-bs-placement="bottom"><i class="fa-solid fa-pen-to-square"></i>
+                        </a>
+
+                        <a href=""class="btn border-shadow custom-tooltip" data-bs-toggle="tooltip" data-bs-title="Hapus Data" data-bs-placement="bottom">
+                            <span class=""><i class="small fa-solid fa-trash"></i></span>
+                        </a>
+
+
+                       
+                        <!-- <a class="btn border-shadow delete" href="" >
+                            <span class="text-gradient"><i class="bi bi-trash2-fill"></i></span>
+                        </a> -->
+                    </td>
+                </tbody>
+            </table>
+            <div id="no-data-message" class="alert alert-danger rounded mt-3 text-center" style="display: none;">
+                Data tidak ditemukan<i class="mx-1 fs-5 fa-brands fa-searchengin fa-bounce"></i>
+            </div>
+
+            <nav aria-label="Page navigation example" class="float-end mt-5 pt-5">
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+            </nav>
+            
+      
+    </div>
+    
+
+    <script src="/assets/js/clock.js"></script>
+    <script src="/assets/js/liveSearchBar.js"></script>
+
+    <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script>
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('.custom-tooltip'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        });
+    </script>
+
+    <!-- Vendor JS Files -->
+</body>
+</html>

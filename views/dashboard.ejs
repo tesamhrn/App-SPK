@@ -8,7 +8,12 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
+
+  <link rel="stylesheet" href="/assets/css/cardCustom.css">
+  <link rel="stylesheet" href="/assets/css/dropdownCustom.css">
   <link rel="stylesheet" href="/assets/css/navbarGradient.css">
+  
+
 </head>
 <body>
 
@@ -51,20 +56,28 @@
 
 
 
-<div class="container mt-5 border border-danger">
+<div class="container mt-5">
 
-    <div class="toast fade show ms-auto animate__animated animate__backInRight" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="toast-header ">
-            <div class="custom-avatar rounded me-2"></div>
-            <strong class="">Notifikasi</strong>
-            <small class="ms-auto">11 secs ago</small>
-        </div>
-        <div class="toast-body">
-            Selamat anda berhasil login 
-          <div class="mt-2 pt-2 border-top">
-            <!-- <button type="button" class="btn btn-primary btn-sm">Take action</button> -->
-            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Close</button>
-          </div>
+    <div aria-live="polite" aria-atomic="true" class="position-relative">
+        <!-- Position it: -->
+        <!-- - `.toast-container` for spacing between toasts -->
+        <!-- - `top-0` & `end-0` to position the toasts in the upper right corner -->
+        <!-- - `.p-3` to prevent the toasts from sticking to the edge of the container  -->
+        <div class="toast-container top-0 end-0">
+            <div class="toast fade show ms-auto animate__animated animate__backInRight" role="alert" aria-live="assertive" aria-atomic="true" id="notification-toast">
+                <div class="toast-header ">
+                    <div class="custom-avatar rounded me-2"></div>
+                    <strong class="">Notifikasi</strong>
+                    <small class="ms-auto"><span id="countdown">10</span> second ago</small>
+                </div>
+                <div class="toast-body">
+                    Selamat anda berhasil login 
+                <div class="mt-2 pt-2 border-top">
+                    <!-- <button type="button" class="btn btn-primary btn-sm">Take action</button> -->
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Close</button>
+                </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -72,10 +85,113 @@
     <div class="card">
         <div class="card-body">
             <h2>Hai user</h2>
+            <h4>Dashboard</h4>
             Selamat datang di Sistem Pendukung Keputusan
         </div>
     </div>
+
+    <div class="col-lg-3 mb-4 pb-2 pt-2">
+        <h5 class=""></h5>
+        
+        <ul class="list-group list-group-horizontal">
+            <button type="button" id="menu-login" class="list-group-item list-group-item-action active">Ikhtisar Data</button>
+            <button type="button" id="menu-signup" class="list-group-item list-group-item-action">Sign Up</button>
+        </ul>
+    </div>
+
+    <div class="row">
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                Earnings (Monthly)</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-green shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                Earnings (Monthly)</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-yellow shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                Earnings (Monthly)</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-red shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                Earnings (Monthly)</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var toast = new bootstrap.Toast(document.getElementById('notification-toast'), { delay: 10000 });
+      toast.show();
+
+      var countdownElement = document.getElementById('countdown');
+      var countdown = 10;
+
+      var countdownInterval = setInterval(function () {
+        countdown--;
+        countdownElement.textContent = countdown;
+        if (countdown <= 0) {
+          clearInterval(countdownInterval);
+        }
+      }, 1000);
+    });
+  </script>
 
 <!-- Vendor JS Files -->
 <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

@@ -1,5 +1,7 @@
 //Get View
-
+// Import modul-modul yang diperlukan
+const bcrypt = require('bcrypt');
+const db = require('../utils/database')
 
 exports.loginPage = async(req,res)=>{
 
@@ -16,4 +18,10 @@ exports.loginPage = async(req,res)=>{
         message
     });
 
+}
+
+
+exports.postCreateAccount = async (req,res)=>{
+    
+    
 }
