@@ -20,7 +20,7 @@
     
 </head>
 <body>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
 
         /* Custom Tooltip Style */
@@ -43,17 +43,25 @@
     <% let name = "Tesa" %>
 
     <div class="container mt-5">
+        <% if (messagePost && messagePost.length > 0) { %>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+              <% messagePost.forEach(message => { %>
+                <%= message %><br>
+              <% }) %>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <% } %>
 
         <!-- <a href="/data/tambah-kriteria" class="btn btn-sm btn-warning">Tambah Kriteria</a> -->
         <div class="dropend">
             <button type="button" class="btn btn-sm btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
               Tambah Kriteria
             </button>
-            <form class="dropdown-menu p-2 col-lg-7 shadow rounded border-1" style="background-color: #ffffff;">
+            <form  action="/data/post-kriteria" method="POST" class="dropdown-menu p-2 col-lg-7 shadow rounded border-0" style="background-color: #ffffff;">
                 <div class="row">
                     <div class="mb-3">
                         <label for="exampleDropdownFormEmail2" class="form-label">Nama Kriteria</label>
-                        <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="Contoh : Jumlah Absensi ">
+                        <input type="text" class="form-control text-capitalize" id="exampleDropdownFormEmail2" placeholder="Contoh : Jumlah Absensi " name="nama_kriteria">
                     </div>
                 </div>
 
@@ -82,24 +90,34 @@
                     <th class="text-center">Aksi</th>
                 </thead>
                 <tbody>
-                    <td>1</td>
-                    <td>Alex</td>
-                    <td>15/02/2022</td>
-                    <td class="text-center">
+                    <% for(let i = 0; i < kriteriaData.length; i++) { %>
+                    <tr>
+                        <td><%=  i + 1 %></td>
+                        <td><%= kriteriaData[i].kode_kriteria %></td>
+                        <td class="text-capitalize"><%= kriteriaData[i].nama_kriteria %></td>
+                        <td class="text-center">
 
-                        <a href="" class="btn btn-sm border-shadow update custom-tooltip" id="set_edit" data-bs-toggle="tooltip" data-bs-title="Edit Data" data-bs-placement="bottom"><i class="fa-solid fa-pen-to-square"></i>
-                        </a>
+                            <a href="" class="btn btn-sm border-shadow update custom-tooltip" id="set_edit" data-bs-toggle="tooltip" data-bs-title="Edit Data" data-bs-placement="bottom"><i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            
+                            <!-- <a href=""class="btn border-shadow custom-tooltip" data-bs-toggle="tooltip" data-bs-title="Hapus Data" data-bs-placement="bottom">
+                                <span class=""><i class="small fa-solid fa-trash"></i></span>
+                            </a> -->
+                            
+                            <!-- Tombol delete -->
+                            <!-- Tombol delete -->
+                            <!-- <form action="/data/data-kriteria/delete" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus kriteria ini?');">
+                                <input type="text" name="id_kriteria" value="<%= kriteriaData[i].id_kriteria %>">
+                                <button type="submit" class="btn btn-sm">Hapus</button>
+                            </form> -->
+                            <!-- <a class="btn border-shadow delete" href="/data/delete-kriteria" >
+                                <span class="text-gradient"><i class="fa-solid fa-trash"></i></span>
+                            </a> -->
 
-                        <a href=""class="btn border-shadow custom-tooltip" data-bs-toggle="tooltip" data-bs-title="Hapus Data" data-bs-placement="bottom">
-                            <span class=""><i class="small fa-solid fa-trash"></i></span>
-                        </a>
-
-
-                       
-                        <!-- <a class="btn border-shadow delete" href="" >
-                            <span class="text-gradient"><i class="bi bi-trash2-fill"></i></span>
-                        </a> -->
-                    </td>
+                            <a class="mx-2" title="Delete" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="<%= kriteriaData[i].id_kriteria %>"><i class="fa-solid text-dark fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    <% } %>
                 </tbody>
             </table>
             <div id="no-data-message" class="alert alert-danger rounded mt-3 text-center" style="display: none;">
@@ -118,7 +136,40 @@
             
       
     </div>
+
+        <!-- Kode HTML untuk modal delete -->
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Konfirmasi</h5>
+                  <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close">
+                  </button>
+                </div>
+                <div class="modal-body">
+                  Apakah Anda ingin menghapus data ini?
+                </div>
+                <div class="modal-footer">
+                  <form action="/data/delete-kriteria" method="POST">
+                    <input type="hidden" name="id_kriteria" id="deleteIdInput">
+                    <button type="submit" class="btn btn-primary">Iya</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tidak</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+        </div>
     
+    <script>
+        $(document).ready(function () {
+            $('#deleteModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var id = button.data('id');
+            var modal = $(this);
+            modal.find('#deleteIdInput').val(id);
+            });
+        });
+    </script>
 
     <script src="/assets/js/clock.js"></script>
     <script src="/assets/js/liveSearchBar.js"></script>

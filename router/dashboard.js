@@ -3,9 +3,8 @@ const router = express.Router();
 
 const { dashboardPage } = require('../controllers/dashboardController');
 
+router.get('/dashboard',dashboardPage);
 
-
-router.get('/dashboard',dashboardPage)
 
 
 

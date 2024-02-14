@@ -1,10 +1,14 @@
 require('dotenv').config();
 const path = require ('path');
-const bodyParser = require('body-parser');
+const bodyparser = require('body-parser');
 const flash = require('connect-flash');
-const session = require('express-session')
+const session = require('express-session');
+const morgan = require('morgan');
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
 
 const express = require('express');
+
 const loginRouter = require('./router/login');
 const dashboardRouter = require('./router/dashboard');
 const karyawanRouter = require('./router/karyawan');
@@ -19,6 +23,15 @@ const app = express();
 
 
 database.connect();
+
+// Middleware untuk mengatur sesi dan cookie
+app.use(cookieParser());
+
+// Menambahkan middleware body-parser pada aplikasi
+app.use(bodyparser.json());
+// parse request to body-parser
+app.use(bodyparser.urlencoded({ extended : true}))
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
