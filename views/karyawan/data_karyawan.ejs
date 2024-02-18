@@ -15,6 +15,9 @@
     <!-- custom css files -->
     <link href="/assets/css/btnCustom.css" rel="stylesheet">
 
+    <!-- custom css files -->
+    <link rel="stylesheet" href="/assets/css/table/searchboxStyle.css">
+
     
 </head>
 <body>
@@ -36,8 +39,14 @@
     <div class="container mt-5">
         <a href="/data/tambah-karyawan" class="btn btn-sm btn-warning">Tambah Karyawan</a>
         <div class="d-flex flex-column animate__animated animate__backInRight">
-
             <h3 class="ms-auto" id="clock">time</h3>
+
+        </div>
+
+            <div class="search-box float-end mb-2">
+                <input type="text" placeholder="Search..." id="search-bar">
+                <button class="btn-srch"><i class="bi bi-search"></i></button>
+            </div>
 
             <h4 class="text-decoration-underline">Data Karyawan</h3>
 
@@ -66,23 +75,28 @@
                     <th>Aksi</th>
                 </thead>
                 <tbody>
-                    <td>1</td>
-                    <td>Alex</td>
-                    <td>15/02/2022</td>
-                    <td>
+                    <% for(let i = 0; i < karyawanData.length; i++) { %>
+                    <tr>
+                        <td><%= i + 1 %></td>
+                        <td><%= karyawanData[i].nama_lengkap %></td>
+                        <td><%= new Date(karyawanData[i].tanggal_masuk).toLocaleDateString() %></td>
 
-                        <a href=""class="btn border-shadow custom-tooltip" data-bs-toggle="tooltip" data-bs-title="Detail Data" data-bs-placement="bottom">
-                            <span class=""><i class="fa-solid fa-grip-vertical"></i></span>
-                        </a>
+                        <td>
 
-                        <a href="" class="btn btn-sm border-shadow update custom-tooltip" id="set_edit" data-bs-toggle="tooltip" data-bs-title="Verifikasi Data" data-bs-placement="bottom"><i class="fa-solid fa-pen-to-square"></i>
-                        </a>
-                        <a href="" class="btn btn-sm border-shadow update custom-tooltip" id="set_edit" data-bs-toggle="tooltip" data-bs-title="Kirim Email" data-bs-placement="bottom" target="_blank"><i class="fa-regular fa-envelope"></i></a>
-                       
-                        <!-- <a class="btn border-shadow delete" href="" >
-                            <span class="text-gradient"><i class="bi bi-trash2-fill"></i></span>
-                        </a> -->
-                    </td>
+                            <a href=""class="btn border-shadow custom-tooltip" data-bs-toggle="tooltip" data-bs-title="Detail Data" data-bs-placement="bottom">
+                                <span class=""><i class="fa-solid fa-grip-vertical"></i></span>
+                            </a>
+
+                            <a href="" class="btn btn-sm border-shadow update custom-tooltip" id="set_edit" data-bs-toggle="tooltip" data-bs-title="Verifikasi Data" data-bs-placement="bottom"><i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <a href="" class="btn btn-sm border-shadow update custom-tooltip" id="set_edit" data-bs-toggle="tooltip" data-bs-title="Kirim Email" data-bs-placement="bottom" target="_blank"><i class="fa-regular fa-envelope"></i></a>
+                            
+                            <!-- <a class="btn border-shadow delete" href="" >
+                                <span class="text-gradient"><i class="bi bi-trash2-fill"></i></span>
+                            </a> -->
+                        </td>
+                    </tr>
+                    <% } %>
                 </tbody>
             </table>
             
@@ -91,6 +105,8 @@
     
 
     <script src="/assets/js/clock.js"></script>
+
+    <script src="/assets/js/liveSearchBar.js"></script>
 
     <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script>

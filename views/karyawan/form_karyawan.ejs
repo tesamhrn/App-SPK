@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Data Karyawan</title>
+    <!-- Tambahkan link ke file CSS Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            padding-top: 50px;
+        }
+
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+
+        .form-control {
+            border-radius: 15px;
+        }
+
+        .btn-primary {
+            border-radius: 15px;
+            width: 100%;
+        }
+
+            /* Style for help button */
+        .help-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-black">
+        <div class="container-fluid">
+          <a class="navbar-brand text-white" href="#">Formulir-Pengisian Data Karyawan</a>
+        </div>
+    </nav>
+    <% if (messagePost && messagePost.length > 0) { %>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <% messagePost.forEach(message => { %>
+            <%= message %><br>
+          <% }) %>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% } %>
+
+    <div class="container mb-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card shadow border border-0">
+                    <!-- Deskripsi -->
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <p class="text-center fw-normal fs-6">Silakan mengisi formulir berikut untuk pendataan karyawan Laundry Dolphin.</p>
+                        </div>
+                        <hr>
+    
+                        <!-- Formulir -->
+                        <form action="/data/postKaryawanForm" method="POST">
+                            <!-- Nama Lengkap -->
+                            <div class="mb-3">
+                                <label for="nama_lengkap" class="form-label">Nama Lengkap</label>
+                                <input type="text" id="nama_lengkap" name="nama_lengkap" class="form-control text-capitalize" required>
+                            </div>
+    
+                            <!-- Tanggal Masuk -->
+                            <div class="mb-3">
+                                <label for="tanggal_masuk" class="form-label">Tanggal Masuk</label>
+                                <input type="date" id="tanggal_masuk" name="tanggal_masuk" class="form-control" required>
+                            </div>
+    
+                            <!-- Alamat -->
+                            <div class="mb-3">
+                                <label for="alamat" class="form-label">Alamat</label>
+                                <input type="text" id="alamat" name="alamat" class="text-capitalize form-control" required>
+                            </div>
+    
+                            <!-- Nomor Telepon -->
+                            <div class="mb-3">
+                                <label for="nomor_telepon" class="form-label">Nomor Telepon</label>
+                                <input type="number" id="nomor_telepon" name="nomor_telepon" class="form-control" required>
+                            </div>
+    
+                            <!-- Email -->
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" id="email" name="email" class="form-control" required>
+                            </div>
+    
+                            <!-- Tombol Kirim -->
+                            <button type="submit" class="btn btn-primary">Kirim</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="helpModalLabel">Keterangan Pengisian</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <!-- Isi keterangan pengisian disini -->
+
+              <ul class="mb-1">
+                <li>Pengisian tanggal masuk yakni tanggal dan tahun anda pertama kali kerja di Laundry Dolphin</li>
+                <li>Isi data nomor telepon yang aktif</li>
+                <li>Isi data emaik yang aktif</li>
+              </ul>
+              <!-- <p>Silakan isi formulir dengan lengkap dan benar.</p> -->
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Tutup</button>
+            </div>
+          </div>
+        </div>
+    </div>
+      
+
+
+    <!-- Tombol bantuan -->
+    <button class="btn btn-secondary help-button rounded-circle opacity-75" data-bs-toggle="modal" data-bs-target="#helpModal">
+        <i class="fa-solid fa-circle-question"></i>
+    </button>
+    
+
+    <!-- Tambahkan link ke file JavaScript Bootstrap jika diperlukan -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script> -->
+</body>
+</html>

@@ -10,7 +10,17 @@ router.get('/tambah-karyawan', karyawanController.addKaryawanPage);
 
 // router.post('/postCreate_Account', createAdminAccount)
 
-// router.post('/postLogin_User', postLoginUser)
+router.post('/postKaryawanForm', karyawanController.postKaryawanData);
 
 router.get('/data-penilaian-karyawan',penilaianController.karyawanViewPage)
+
+router.get('/NhgdjgfNVGzvczYDF/form-pengisian-karyawan',(_,res)=>{
+   
+    const messagePost = _.flash('postInfo');
+    res.render('form_karyawan',{
+        messagePost
+    });
+
+});
+
 module.exports = router;
