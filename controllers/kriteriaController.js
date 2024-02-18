@@ -16,10 +16,13 @@ exports.kriteriaPage = (req,res)=>{
         else if(!err){
             
             const messagePost = req.flash('postInfo')
+            const messageDelete = req.flash('deleteInfo')
+
 
             res.render('data_kriteria',{
                 locals,
                 messagePost,
+                messageDelete,
                 kriteriaData: resultsRead,
             })
         }

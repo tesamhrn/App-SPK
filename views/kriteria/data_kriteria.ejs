@@ -52,6 +52,15 @@
             </div>
         <% } %>
 
+        <% if (messageDelete && messageDelete.length > 0) { %>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+              <% messageDelete.forEach(message => { %>
+                <%= message %><br>
+              <% }) %>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <% } %>
+
         <!-- <a href="/data/tambah-kriteria" class="btn btn-sm btn-warning">Tambah Kriteria</a> -->
         <div class="dropend">
             <button type="button" class="btn btn-sm btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
@@ -61,7 +70,7 @@
                 <div class="row">
                     <div class="mb-3">
                         <label for="exampleDropdownFormEmail2" class="form-label">Nama Kriteria</label>
-                        <input type="text" class="form-control text-capitalize" id="exampleDropdownFormEmail2" placeholder="Contoh : Jumlah Absensi " name="nama_kriteria" required>
+                        <input type="text" class="form-control text-capitalize text-dark" id="exampleDropdownFormEmail2" placeholder="Contoh : Jumlah Absensi " name="nama_kriteria" required>
                     </div>
                 </div>
 
