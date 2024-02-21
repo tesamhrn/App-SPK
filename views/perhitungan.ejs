@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/dividershapeCustom.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="/assets/css/cardCustom.css">
+    <link rel="stylesheet" href="/assets/css/dropdownCustom.css">
+    <link rel="stylesheet" href="/assets/css/navbarGradient.css">
+
+    <style>
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+        }
+    </style>
+
+</head>
+<body>
+    <!-- header start -->
+    <%-include('partials/header'); %>
+    <!-- header end -->
+
+    <div class="container mt-5">
+
+        <div class="card border-0 shadow-sm">
+            <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb" class="mt-3 ms-2">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a id="kriteria" href="#" class="text-capitalize">Kriteria</a></li>
+                    <li class="breadcrumb-item"><a id="alternatif" href="#" class="text-capitalize">Alternatif</a></li>
+                    <li class="breadcrumb-item"><a href="#" id="perbandingan-kriteria">Perbandingan Kriteria</a></li>
+                    <li class="breadcrumb-item"><a href="#" class="text-capitalize">Perbandingan Alternatif</a></li>
+                </ol>
+            </nav>
+        </div>
+
+        <div class="mt-4 content-section" id="kriteria-section">
+            <h3>Kriteria</h3>
+            <table class="table table-sm table-hover custom-table" id="data-table-view">
+                <thead> 
+                    <th>No</th>
+                    <th>Kode Kriteria</th>
+                    <th>Nama Kriteria</th>
+                    <!-- <th class="text-center">Aksi</th> -->
+                </thead>
+                <tbody>
+                    <% for(let i = 0; i < kriteriaData.length; i++) { %>
+                    <tr>
+                        <td><%=  i + 1 %></td>
+                        <td><%= kriteriaData[i].kode_kriteria %></td>
+                        <td class="text-capitalize"><%= kriteriaData[i].nama_kriteria %></td>
+                    </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+        
+
+        <div class="mt-4 content-section" id="alternatif-section">
+            <h3>Alternatif</h3>
+            <!-- Konten untuk alternatif di sini -->
+            <table class="table table-sm table-striped">
+                <thead>
+                    <th>No</th>
+                    <th>Nama Lengkap</th>
+                    <th>Tanggal Masuk</th>
+                    <!-- <th>Aksi</th> -->
+                </thead>
+                <tbody>
+                    <% for(let i = 0; i < karyawanData.length; i++) { %>
+                    <tr>
+                        <td><%= i + 1 %></td>
+                        <td><%= karyawanData[i].nama_lengkap %></td>
+                        <td><%= new Date(karyawanData[i].tanggal_masuk).toLocaleDateString() %></td>
+
+
+                    </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="mt-4 content-section" id="perbandingan-kriteria-section">
+            <h3>Perbandingan Kriteria</h3>
+            <!-- Konten untuk perbandingan kriteria di sini -->
+
+
+            <form class="ui form" action="proses.php" method="post">
+                <table class="ui celled selectable collapsing table">
+                    <thead>
+                        <tr>
+                            <th colspan="2">Pilih yang lebih penting</th>
+                            <th>Nilai perbandingan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%
+                        // Inisialisasi variabel urut dan nilaiDefault
+                        let urut = 0;
+                        let nilaiDefault = 0; // Sesuaikan dengan nilai default yang Anda inginkan
+                        %>
+                        <% for (let x = 0; x <= kriteriaData.length - 2; x++) { %>
+                            <% for (let y = x + 1; y <= kriteriaData.length - 1; y++) { %>
+                                <tr>
+                                    <td>
+                                        <div class="field">
+                                            <div class="ui radio checkbox">
+                                                <input name="pilih<%= urut %>" value="1" checked="" class="hidden" type="radio">
+                                                <label><%= kriteriaData[x].nama_kriteria %></label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="field">
+                                            <div class="ui radio checkbox">
+                                                <input name="pilih<%= urut %>" value="2" class="hidden" type="radio">
+                                                <label><%= kriteriaData[y].nama_kriteria %></label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="field">
+                                            <input type="number" name="bobot<%= urut %>" class="form-control"  value="<%= nilaiDefault %>" max="10" required>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <% urut++; %> <!-- Tingkatkan urut di sini -->
+                            <% } %>
+                        <% } %>
+                    </tbody>
+                </table>
+                <input type="text" name="jenis" value="kriteria" hidden>
+                <br><br>
+                <input class="ui submit button" type="submit" name="submit" value="SUBMIT" style="margin-left: 50%; position: absolute; margin-top: -30px;">
+            </form>
+            
+            
+        </div>
+
+        <div class="mt-4 content-section" id="perbandingan-alternatif-section">
+            <h3>Perbandingan Alternatif</h3>
+            <!-- Konten untuk perbandingan alternatif di sini -->
+        </div>
+
+        <button class="btn btn-warning float-end">Lanjut</button>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const kriteriaLink = document.getElementById("kriteria");
+            const kriteriaSection = document.getElementById("kriteria-section");
+    
+            const alternatifLink = document.getElementById("alternatif");
+            const alternatifSection = document.getElementById("alternatif-section");
+    
+            const perbandinganKriteriaLink = document.getElementById("perbandingan-kriteria");
+            const perbandinganKriteriaSection = document.getElementById("perbandingan-kriteria-section");
+            
+            // Cek apakah perbandingan kriteria section sudah ditandai sebagai active di local storage
+            const isPerbandinganKriteriaActive = localStorage.getItem("perbandinganKriteriaActive");
+            if (isPerbandinganKriteriaActive === "true") {
+                perbandinganKriteriaSection.classList.add("active");
+            } else {
+                // Jika tidak ada status aktif perbandingan kriteria, cek status aktif kriteria
+                const isKriteriaActive = localStorage.getItem("kriteriaActive");
+                if (isKriteriaActive === "true") {
+                    kriteriaSection.classList.add("active");
+                } else {
+                    // Jika tidak ada status aktif kriteria, cek status aktif alternatif
+                    const isAlternatifActive = localStorage.getItem("alternatifActive");
+                    if (isAlternatifActive === "true") {
+                        alternatifSection.classList.add("active");
+                    }
+                }
+            }
+            
+            kriteriaLink.addEventListener("click", function (event) {
+                event.preventDefault();
+                const targetId = this.getAttribute("id");
+                const sections = document.querySelectorAll(".content-section");
+                sections.forEach(section => {
+                    section.classList.remove("active");
+                });
+                const targetSection = document.getElementById(targetId + "-section");
+                if (targetSection) {
+                    targetSection.classList.add("active");
+                    // Simpan status aktif kriteria di local storage
+                    localStorage.setItem("kriteriaActive", "true");
+                    // Hapus status aktif alternatif dan perbandingan kriteria dari local storage
+                    localStorage.removeItem("alternatifActive");
+                    localStorage.removeItem("perbandinganKriteriaActive");
+                }
+            });
+    
+            alternatifLink.addEventListener("click", function (event) {
+                event.preventDefault();
+                const targetId = this.getAttribute("id");
+                const sections = document.querySelectorAll(".content-section");
+                sections.forEach(section => {
+                    section.classList.remove("active");
+                });
+                const targetSection = document.getElementById(targetId + "-section");
+                if (targetSection) {
+                    targetSection.classList.add("active");
+                    // Simpan status aktif alternatif di local storage
+                    localStorage.setItem("alternatifActive", "true");
+                    // Hapus status aktif kriteria dan perbandingan kriteria dari local storage
+                    localStorage.removeItem("kriteriaActive");
+                    localStorage.removeItem("perbandinganKriteriaActive");
+                }
+            });
+    
+            perbandinganKriteriaLink.addEventListener("click", function (event) {
+                event.preventDefault();
+                const targetId = this.getAttribute("id");
+                const sections = document.querySelectorAll(".content-section");
+                sections.forEach(section => {
+                    section.classList.remove("active");
+                });
+                const targetSection = document.getElementById(targetId + "-section");
+                if (targetSection) {
+                    targetSection.classList.add("active");
+                    // Simpan status aktif perbandingan kriteria di local storage
+                    localStorage.setItem("perbandinganKriteriaActive", "true");
+                    // Hapus status aktif kriteria dan alternatif dari local storage
+                    localStorage.removeItem("kriteriaActive");
+                    localStorage.removeItem("alternatifActive");
+                }
+            });
+        });
+    </script>
+    
+</body>
+</html>

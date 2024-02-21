@@ -13,6 +13,7 @@ const loginRouter = require('./router/login');
 const dashboardRouter = require('./router/dashboard');
 const karyawanRouter = require('./router/karyawan');
 const kriteriaRouter = require('./router/kriteria');
+const perhitunganRouter = require('./router/perhitungan');
 const database = require('./utils/database');
 const PORT = process.env.PORT
 
@@ -57,7 +58,7 @@ app.use(flash({ sessionKeyName: 'flashMessage' }));
 app.set("views",[
     path.join(__dirname, "/views"),
     path.join(__dirname, "/views/karyawan"),
-    path.join(__dirname, "/views/karyawan_penilaian"),
+    path.join(__dirname, "/views/perhitungan"),
     path.join(__dirname, "/views/kriteria"),
 
 ])
@@ -65,7 +66,7 @@ app.set("views",[
 
 app.set('view engine', 'ejs');
 
-app.use('/', loginRouter, dashboardRouter);
+app.use('/', loginRouter, dashboardRouter, perhitunganRouter);
 app.use('/data', karyawanRouter, kriteriaRouter);
 
 

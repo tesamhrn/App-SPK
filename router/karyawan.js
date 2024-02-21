@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 const karyawanController = require('../controllers/karyawanController');
-const penilaianController = require('../controllers/penilaianController');
+// const penilaianController = require('../controllers/penilaianCkontroller');
+// router.get('/data-penilaian-karyawan',penilaianController.karyawanViewPage)
 
 
 router.get('/data-karyawan', karyawanController.karyawanViewPage);
@@ -12,7 +13,6 @@ router.get('/tambah-karyawan', karyawanController.addKaryawanPage);
 
 router.post('/postKaryawanForm', karyawanController.postKaryawanData);
 
-router.get('/data-penilaian-karyawan',penilaianController.karyawanViewPage)
 
 router.get('/NhgdjgfNVGzvczYDF/form-pengisian-karyawan',(_,res)=>{
    
