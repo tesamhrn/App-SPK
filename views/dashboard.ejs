@@ -58,11 +58,8 @@
 
 <div class="container mt-5">
 
+    <% messageLoginInfo.forEach(element => { %>
     <div aria-live="polite" aria-atomic="true" class="position-relative">
-        <!-- Position it: -->
-        <!-- - `.toast-container` for spacing between toasts -->
-        <!-- - `top-0` & `end-0` to position the toasts in the upper right corner -->
-        <!-- - `.p-3` to prevent the toasts from sticking to the edge of the container  -->
         <div class="toast-container top-0 end-0">
             <div class="toast fade show ms-auto animate__animated animate__backInRight" role="alert" aria-live="assertive" aria-atomic="true" id="notification-toast">
                 <div class="toast-header ">
@@ -71,7 +68,7 @@
                     <small class="ms-auto"><span id="countdown">10</span> second ago</small>
                 </div>
                 <div class="toast-body">
-                    Selamat anda berhasil login 
+                    <%= element %>
                 <div class="mt-2 pt-2 border-top">
                     <!-- <button type="button" class="btn btn-primary btn-sm">Take action</button> -->
                     <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Close</button>
@@ -80,6 +77,7 @@
             </div>
         </div>
     </div>
+    <% })%>
 
     
     <div class="card">
@@ -125,7 +123,8 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                ---</div>
+                                jumlah kriteria
+                            </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
                         </div>
                         <div class="col-auto">

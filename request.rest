@@ -1,0 +1,17 @@
+POST http://localhost:3003/create_account
+Content-Type: application/json
+
+{
+    "username" : "gile",
+    "password" : "gile"
+
+}
+
+###
+POST http://localhost:3003/login_
+Content-Type: application/json
+
+{
+    "username" : "gile",
+    "password" : "gile"
+}

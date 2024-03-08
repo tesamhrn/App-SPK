@@ -1,12 +1,16 @@
 const db = require("../utils/database");
 
-exports.dashboardPage = (req,res)=>{
+exports.dashboardPage = async(req,res)=>{
     const locals = {
         title : "Dashboard Page",
         description : "Dashboard SPK website"
     }
+
+    const messageLoginInfo = await req.flash('infoLogin')
+
     res.render('dashboard',{
-        locals
+        locals,
+        messageLoginInfo
     });
 }
 
@@ -28,7 +32,7 @@ exports.dashboardPage = (req,res)=>{
 
 exports.perhitunganPage = async (req, res) => {
     const locals = {
-        title: "Dashboard Page",
+        title: "Perhitungan AHP-TOPSIS",
         description: "Dashboard SPK website"
     };
 

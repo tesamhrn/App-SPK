@@ -51,10 +51,20 @@
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         <% } %>
+        
 
         <% if (messageDelete && messageDelete.length > 0) { %>
             <div class="alert alert-success alert-dismissible fade show" role="alert">
               <% messageDelete.forEach(message => { %>
+                <%= message %><br>
+              <% }) %>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close "></button>
+            </div>
+        <% } %>
+
+        <% if (messageCheck && messageCheck.length > 0) { %>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+              <% messageCheck.forEach(message => { %>
                 <%= message %><br>
               <% }) %>
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -106,7 +116,7 @@
                         <td class="text-capitalize"><%= kriteriaData[i].nama_kriteria %></td>
                         <td class="text-center">
 
-                            <a href="" class="btn btn-sm border-shadow update custom-tooltip" id="set_edit" data-bs-toggle="tooltip" data-bs-title="Edit Data" data-bs-placement="bottom"><i class="fa-solid fa-pen-to-square"></i>
+                            <a href="#" class="btn btn-sm border-shadow update custom-tooltip" id="set_edit" data-bs-toggle=tooltip" data-bs-title="Edit Data" data-bs-placement="bottom"><i data-bs-toggle="modal" data-bs-target="#editModal" class="fa-solid fa-pen-to-square"></i>
                             </a>
                             
                             <!-- <a href=""class="btn border-shadow custom-tooltip" data-bs-toggle="tooltip" data-bs-title="Hapus Data" data-bs-placement="bottom">
@@ -168,7 +178,29 @@
               </div>
             </div>
         </div>
-    
+
+    <!-- Modal -->
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Kriteria</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="exampleDropdownFormEmail2" class="form-label">Nama Kriteria</label>
+                    <input type="text" class="form-control text-capitalize text-dark" id="exampleDropdownFormEmail2" placeholder="Contoh : Jumlah Absensi " name="nama_kriteria" required>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                <button type="button" class="btn btn-primary">Perbarui</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         $(document).ready(function () {
             $('#deleteModal').on('show.bs.modal', function (event) {
