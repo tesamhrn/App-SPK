@@ -1,0 +1,39 @@
+<!-- views/data_rel_alternatif.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Relasi Alternatif</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Data Relasi Alternatif</h1>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Kode Alternatif</th>
+                    <th>Nama Karyawan</th>
+                    <% kriteriaData.forEach(kriteria => { %>
+                        <th><%= kriteria.kode_kriteria %></th>
+                    <% }); %>
+                </tr>
+            </thead>
+            <tbody>
+                <% karyawanArray.forEach(karyawan => { %>
+                    <tr>
+                        <td><%= karyawan.kode_alternatif %></td>
+                        <td><%= karyawan.nama_karyawan %></td>
+                        <% kriteriaData.forEach(kriteria => { %>
+                            <td><%= karyawan.nilai[kriteria.kode_kriteria] %></td>
+                        <% }); %>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

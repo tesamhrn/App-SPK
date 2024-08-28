@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambah Bobot Karyawan</title>
+    <link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- custom css navbar -->
+    <link rel="stylesheet" href="/assets/css/navbarGradient.css">
+
+    <!-- custom css files -->
+    <link href="/assets/css/btnCustom.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- header start -->
+    <%-include('partials/header'); %>
+    <!-- header end -->
+
+
+    <div class="container mt-4 mb-4">
+        <form id="editBobotKaryawanForm" action="/data/update-bobot" method="post">
+            <h6>Tambah Bobot - <span class="text-dark"><%= karyawanData.nama_karyawan %>
+            </span></h6>
+            <small>Kode Alternatif : <span class="text-dark"><%= karyawanData.kode_alternatif %></span></small>
+
+            <hr>
+
+            <!-- Input untuk data yang akan diubah -->
+
+            <!-- <input type="hidden" name="kode_alternatif" id="inputKodeAlternatif"> -->
+            <!-- <input type="hidden" name="nama_karyawan" id="inputNamaKaryawan"> -->
+
+
+            <!-- Input untuk data yang akan diubah -->
+            <!-- <input type="hidden" name="kode_alternatif" id="inputKodeAlternatif"> -->
+            <!-- <input type="hidden" name="nama_karyawan" id="inputNamaKaryawan"> -->
+
+            <% for(let i = 0;  i < kriteriaData.length; i++) { %>
+                <div class="mb-3 col-lg-4">
+
+                    <!-- Input untuk kode alternatif -->
+                    <input type="hidden" name="kode_alternatif" id="inputKodeAlternatif_<%= i %>" value="<%= karyawanData.kode_alternatif %>">
+                    <input type="hidden" name="kode_kriteria" id="inputKodeAlternatif_<%= i %>" value="<%= kriteriaData[i].kode_kriteria %>">
+                    <label for="" class="form-label text-capitalize"><%= kriteriaData[i].nama_kriteria %></label>
+                    <input type="number" min="1" max="10" class="form-control text-dark" name="nilai[<%= i %>]" id="nilai_<%= i %>" value="">
+                
+                </div>
+            <% } %>
+
+                <!-- Tombol Simpan -->
+                <div class="">
+                    <a href="/data/data-karyawan" class="btn btn-primary btn-sm">Kembali</a>
+                    <button type="submit" class="btn btn-sm btn-success">Simpan</button>
+                    
+                </div>
+               
+            </form>
+        </div>
+            <!-- footer start -->
+    <%-include('partials/footer'); %>
+    <!-- footer end -->
+
+        <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Your custom scripts here -->
+    </body>
+    </html>

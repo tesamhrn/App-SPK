@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Karyawan</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Data Karyawan</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID Karyawan</th>
+                    <th>Kode Alternatif</th>
+                    <th>Nama Karyawan</th>
+                    <th>Tanggal Masuk</th>
+                    <th>Status Nilai Bobot</th>
+                    <th>
+                        Aksi
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <% karyawanData.forEach(function(karyawan) { %>
+                    <tr>
+                        <td><%= karyawan.id_karyawan %></td>
+                        <td><%= karyawan.kode_alternatif %></td>
+                        <td><%= karyawan.nama_karyawan %></td>
+                        <td><%= new Date (karyawan.tanggal_masuk).toLocaleDateString() %></td>
+                        <% if (karyawan.nilai_bobot === 'nilai bobot kosong') { %>
+                            <td><span class="badge bg-danger">Nilai bobot kosong</span></td>
+                        <% } else { %>
+                            <td><span class="badge bg-success">Nilai bobot tersedia</span></td>
+                        <% } %>
+                        <td>
+                            <a class="btn btn-sm border-shadow custom-tooltip" data-bs-toggle="tooltip" data-bs-title="Beri Bobot" data-bs-placement="bottom" href="/data/tambah-bobot-karyawan/<%= karyawan.id_karyawan %>"><i class="fa-solid fa-weight-hanging fa-shake"></i></a>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

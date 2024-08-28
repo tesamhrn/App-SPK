@@ -5,10 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= locals.title %></title>
   <link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap.min.css">
-
+  <link rel="icon" href="/assets/favicon.png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-
-
+  <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="/assets/css/cardCustom.css">
   <link rel="stylesheet" href="/assets/css/dropdownCustom.css">
   <link rel="stylesheet" href="/assets/css/navbarGradient.css">
@@ -56,123 +55,140 @@
 
 
 
-<div class="container mt-5">
+    <div class="container mt-5 mb-5">
 
-    <% messageLoginInfo.forEach(element => { %>
-    <div aria-live="polite" aria-atomic="true" class="position-relative">
-        <div class="toast-container top-0 end-0">
-            <div class="toast fade show ms-auto animate__animated animate__backInRight" role="alert" aria-live="assertive" aria-atomic="true" id="notification-toast">
-                <div class="toast-header ">
-                    <div class="custom-avatar rounded me-2"></div>
-                    <strong class="">Notifikasi</strong>
-                    <small class="ms-auto"><span id="countdown">10</span> second ago</small>
-                </div>
-                <div class="toast-body">
-                    <%= element %>
-                <div class="mt-2 pt-2 border-top">
-                    <!-- <button type="button" class="btn btn-primary btn-sm">Take action</button> -->
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Close</button>
-                </div>
+        <% messageLoginInfo.forEach(element => { %>
+        <div aria-live="polite" aria-atomic="true" class="position-relative">
+            <div class="toast-container top-0 end-0">
+                <div class="toast fade show ms-auto animate__animated animate__backInRight" role="alert" aria-live="assertive" aria-atomic="true" id="notification-toast">
+                    <div class="toast-header ">
+                        <div class="custom-avatar rounded me-2"></div>
+                        <strong class="">Notifikasi</strong>
+                        <small class="ms-auto"><span id="countdown">10</span> second ago</small>
+                    </div>
+                    <div class="toast-body">
+                        <%= element %>
+                    <div class="mt-2 pt-2 border-top">
+                        <!-- <button type="button" class="btn btn-primary btn-sm">Take action</button> -->
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">Close</button>
+                    </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <% })%>
+        <% })%>
 
-    
-    <div class="card">
-        <div class="card-body">
-            <h2>Hai user</h2>
-            <h4>Dashboard</h4>
-            Selamat datang di Sistem Pendukung Keputusan
-        </div>
-    </div>
-
-    <div class="col-lg-3 mb-4 pb-2 pt-2">
-        <h5 class=""></h5>
         
-        <ul class="list-group list-group-horizontal">
-            <button type="button" id="menu-login" class="list-group-item list-group-item-action active">Ikhtisar Data</button>
-            <button type="button" id="menu-signup" class="list-group-item list-group-item-action">Website</button>
-        </ul>
-    </div>
-
-    <div class="row">
-        <!-- Earnings (Monthly) Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                jumlah karyawan</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
+        <div class="card">
+            <div class="card-body">
+                <h2>Hai user</h2>
+                <h4>Dashboard</h4>
+                Selamat datang di Sistem Pendukung Keputusan
             </div>
         </div>
 
-        <!-- Earnings (Monthly) Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-green shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                jumlah kriteria
+        <div class="col-lg-3 mb-4 pb-2 pt-2">
+            <h5 class=""></h5>
+            
+            <ul class="list-group list-group-horizontal">
+                <button type="button" id="menu-login" class="list-group-item list-group-item-action active">Ikhtisar Data</button>
+                <button type="button" id="menu-signup" class="list-group-item list-group-item-action">Website</button>
+            </ul>
+        </div>
+
+        <div class="row">
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4" hx-get="/getTotalKaryawan" hx-trigger="load" hx-swap="innerHTML" hx-target="#totalKaryawan">
+                <div class="card border-left-primary shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    jumlah karyawan</div>
+                                    <div class="animate__animated animate__headShake h5 mb-0 font-weight-bold text-gray-800" id="totalKaryawan">Loading...</div>
+                                <!-- <div class="h5 mb-0 font-weight-bold text-gray-800"></div> -->
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                            <div class="col-auto">
+                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Earnings (Monthly) Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-yellow shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                -----</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <!-- Earnings (Monthly) Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-red shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                -------</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4" hx-get="/getTotalKriteria" hx-trigger="load" hx-swap="innerHTML" hx-target="#totalKriteria">
+                <div class="card border-left-green shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    jumlah kriteria
+                                </div>
+                                <div class="animate__animated animate__headShake h5 mb-0 font-weight-bold text-gray-800" id="totalKriteria">Loading...</div>
+                                <!-- <div class="h5 mb-0 font-weight-bold text-gray-800"></div> -->
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                            </div>
                         </div>
-                        <div class="col-auto">
-                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-yellow shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    -----</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-red shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    -------</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        
     </div>
+
+    <!-- Footer -->
+    <!-- <footer class="footer mt-auto py-3 bg-light">
+        <div class="container">
+            <span class="text-muted">Place sticky footer content here.</span>
+        </div>
+    </footer> -->
     
-</div>
+    <div class="mt-5 pt-5">
+        <!-- footer -->
+        <%-include('partials/footer'); %>
+        <!-- End of Footer -->
+    </div>
 
     <script>
     document.addEventListener('DOMContentLoaded', function () {

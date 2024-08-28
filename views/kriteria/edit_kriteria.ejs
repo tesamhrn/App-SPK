@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= locals.title %></title>
+
+    <link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- custom css navbar -->
+    <link rel="stylesheet" href="/assets/css/navbarGradient.css">
+
+    <!-- custom css files -->
+    <link href="/assets/css/btnCustom.css" rel="stylesheet">
+</head>
+<body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+
+        /* Custom Tooltip Style */
+        .tooltip-inner {
+            background-color: #19314a; /* Ganti warna latar belakang tooltip sesuai keinginan Anda */
+            color: #ffffff; /* Ganti warna teks tooltip sesuai keinginan Anda */
+            border: 1px solid #19314a; /* Ganti warna border tooltip sesuai keinginan Anda */
+        }
+    </style>
+
+    <style>
+        .custom-table td,
+        .custom-table th {
+            font-size: 14px; /* Adjust the font size as needed */
+        }
+    </style>
+    <!-- header start -->
+    <%-include('partials/header'); %>
+    <!-- header end -->
+    <% let name = "Tesa" %>
+
+    <div class="container mt-5">
+        <!-- Breadcrumbs -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Data Kriteria</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Edit Kriteria</li>
+            </ol>
+        </nav>
+        
+        <hr>
+
+        <!-- Back button -->
+        <a href="#" class="btn btn-secondary btn-sm mb-3 shadow border border-0 " onclick="history.back()"><i class="fas fa-arrow-left"></i> Kembali</a>
+        
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <div class="card border border-0 shadow">
+                    <div class="card-header">
+                        Form Update Kriteria
+                    </div>
+                    <div class="card-body">
+                        <form id="updateForm">
+                            <div class="mb-3">
+                                <label for="namaKriteria" class="form-label">Nama Kriteria</label>
+                                <input type="text" class="form-control text-dark" id="namaKriteria" name="nama_kriteria" value="<%= kriteriaData.nama_kriteria %>" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Perbarui</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="/assets/js/clock.js"></script>
+    <script src="/assets/js/liveSearchBar.js"></script>
+
+
+    <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

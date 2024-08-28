@@ -7,6 +7,10 @@ const morgan = require('morgan');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
+// Menetapkan batas maksimum pendengar acara (event listeners) secara global
+// require('events').EventEmitter.defaultMaxListeners = 15; // Sesuaikan angka maksimum sesuai kebutuhan Anda
+
+
 const express = require('express');
 
 const loginRouter = require('./router/login');
@@ -14,6 +18,7 @@ const dashboardRouter = require('./router/dashboard');
 const karyawanRouter = require('./router/karyawan');
 const kriteriaRouter = require('./router/kriteria');
 const perhitunganRouter = require('./router/perhitungan');
+
 const database = require('./utils/database');
 const PORT = process.env.PORT
 

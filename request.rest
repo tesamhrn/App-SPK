@@ -15,3 +15,29 @@ Content-Type: application/json
     "username" : "gile",
     "password" : "gile"
 }
+
+###
+GET http://localhost:3003/getTotalKaryawan
+
+
+###
+GET http://localhost:3003/getTotalKriteria
+
+
+###
+POST http://localhost:3003/uploadProfile
+
+
+###
+GET http://localhost:3003/data/create-pdf
+
+
+###
+POST http://localhost:3003/data/hitung-perbandingan-kriteria
+Content-Type: application/json
+
+{
+    "kriteria_1" : "df",
+    "kriteria_2" : "df",
+    "nilai" : 1
+}

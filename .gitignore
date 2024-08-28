@@ -1,3 +1,4 @@
 node_modules
 .env
-views/perhitungan copy.ejsa
+views/perhitungan copy.ejs
+request.rest

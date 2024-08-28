@@ -19,8 +19,9 @@
 
     
 </head>
-<body>
+<body class="animate__animated animate__fadeIn">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <style>
 
         /* Custom Tooltip Style */
@@ -41,6 +42,11 @@
     <%-include('partials/header'); %>
     <!-- header end -->
     <% let name = "Tesa" %>
+
+    <div class="d-flex flex-column animate__animated animate__fadeInRight">
+
+        <h6 class="ms-auto" id="clock">time</h6>
+    </div>
 
     <div class="container mt-5">
         <% if (messagePost && messagePost.length > 0) { %>
@@ -70,6 +76,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         <% } %>
+        <h4 class="text-decoration-none text-center"><%= locals.title %></h3>
 
         <!-- <a href="/data/tambah-kriteria" class="btn btn-sm btn-warning">Tambah Kriteria</a> -->
         <div class="dropend">
@@ -82,23 +89,114 @@
                         <label for="exampleDropdownFormEmail2" class="form-label">Nama Kriteria</label>
                         <input type="text" class="form-control text-capitalize text-dark" id="exampleDropdownFormEmail2" placeholder="Contoh : Jumlah Absensi " name="nama_kriteria" required>
                     </div>
+
+                    <div class="mb-3 col-lg-3">
+                        <label for="exampleDropdownFormEmail2" class="form-label">Set Atribut</label>
+                        <select name="" id="" class="form-select">
+                            <option value="">-</option>
+                            <option value="">Cost</option>
+                            <option value="">Benefit</option>
+                        </select>
+                        <!-- <input type="text" class="form-control text-capitalize text-dark" id="exampleDropdownFormEmail2" placeholder="Contoh : Jumlah Absensi " name="nama_kriteria" required> -->
+                    </div>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Tambah</button>
             </form>
         </div>
-        
-        <div class="d-flex flex-column animate__animated animate__backInRight">
-
-            <h3 class="ms-auto" id="clock">time</h3>
+        <div class="mt-1">
+            <button type="button" class="btn btn-light btn-sm dropdown-toggle" data-bs-toggle="modal" aria-expanded="false" data-bs-target="#modalBobot">
+                Bobot Kriteria &nbsp;&nbsp;
+            </button>
+            
         </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="modalBobot" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Nilai Bobot Kriteria</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="col-lg-10">
+                            <form action="" method="post">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-lg-3">
+                                            <select name="kriteria_1" class="form-select" id="">
+                                                <% for(let i = 0; i < kriteriaData.length; i++) { %>
+                                                <option value=""><%= kriteriaData[i].nama_kriteria %></option>
+                                                <% } %>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <select name="nilai" class="form-select" id="nilai">
+                                                <% nilaiOptions.forEach(option => { %>
+                                                    <option class="text-dark" value="<%= option.value %>"><%= option.label %></option>
+                                                <% }); %>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <select name="" class="form-select" id="">
+                                                <% for(let i = 0; i < kriteriaData.length; i++) { %>
+                                                <option value=""><%= kriteriaData[i].nama_kriteria %></option>
+                                                <% } %>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-2 align-self-center">
+                                            <button type="button" class="btn btn-sm btn-success w-100">Ubah</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        
+
+                    <!-- Tabel rel kriteria -->
+                    <table class="table table-sm table-hover custom-table" id="data-table-view">
+                        <thead>
+                            <tr>
+                                <th>Kode Kriteria</th>
+                                <% for (let i = 0; i < kriteriaData.length; i++) { %>
+                                <th><%= kriteriaData[i].kode_kriteria %></th>
+                                <% } %>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for (let i = 0; i < kriteriaData.length; i++) { %>
+                                <tr>
+                                    <td><%= kriteriaData[i].kode_kriteria %></td>
+                                    <% for (let j = 0; j < kriteriaData.length; j++) { %>
+                                    <td>
+                                        <% if (i === j) { %>
+                                            <%= "1" %>
+                                        <% } else { %>
+                                            <!-- Implementasi nilai bobot kriteria disini -->
+                                        <% } %>
+                                    </td>
+                                    <% } %>
+                                </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                        <!-- <button type="button" class="btn btn-primary">Understood</button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
         
         <div class="search-box float-end mb-2">
             <input type="text" placeholder="Search..." id="search-bar">
             <button class="btn-srch"><i class="bi bi-search"></i></button>
         </div>
-        
-        <h4 class="text-decoration-underline"><%= locals.title %></h3>
 
 
             <table class="table table-sm table-hover custom-table" id="data-table-view">
@@ -116,7 +214,7 @@
                         <td class="text-capitalize"><%= kriteriaData[i].nama_kriteria %></td>
                         <td class="text-center">
 
-                            <a href="#" class="btn btn-sm border-shadow update custom-tooltip" id="set_edit" data-bs-toggle=tooltip" data-bs-title="Edit Data" data-bs-placement="bottom"><i data-bs-toggle="modal" data-bs-target="#editModal" class="fa-solid fa-pen-to-square"></i>
+                            <a href="/data/edit-kriteria/<%= kriteriaData[i].id_kriteria %>" class="btn btn-sm border-shadow update custom-tooltip" id="set_edit" data-bs-toggle="tooltip" data-bs-title="Edit Data" data-bs-placement="bottom"><i class="fa-solid fa-pen-to-square"></i>
                             </a>
                             
                             <!-- <a href=""class="btn border-shadow custom-tooltip" data-bs-toggle="tooltip" data-bs-title="Hapus Data" data-bs-placement="bottom">
@@ -136,6 +234,7 @@
                             <a class="mx-2" title="Delete" data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="<%= kriteriaData[i].id_kriteria %>"><i class="fa-solid text-dark fa-trash"></i></a>
                         </td>
                     </tr>
+                    
                     <% } %>
                 </tbody>
             </table>
@@ -179,27 +278,7 @@
             </div>
         </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Kriteria</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="mb-3">
-                    <label for="exampleDropdownFormEmail2" class="form-label">Nama Kriteria</label>
-                    <input type="text" class="form-control text-capitalize text-dark" id="exampleDropdownFormEmail2" placeholder="Contoh : Jumlah Absensi " name="nama_kriteria" required>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                <button type="button" class="btn btn-primary">Perbarui</button>
-            </div>
-            </div>
-        </div>
-    </div>
+
 
     <script>
         $(document).ready(function () {
@@ -212,8 +291,10 @@
         });
     </script>
 
+
     <script src="/assets/js/clock.js"></script>
     <script src="/assets/js/liveSearchBar.js"></script>
+
 
     <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script>
